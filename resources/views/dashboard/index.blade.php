@@ -22,7 +22,7 @@
 
     <div class="container-fluid">
         <div class="row size-column">
-            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer">
+            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer" onclick="location.href = '/developers'">
                 <div class="row">
                     <div class="col-md-12 col-sm-6">
                         <div class="card boost-up-card overflow-hidden">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer">
+            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer" onclick="location.href = '/my-garden'">
                 <div class="row">
                     <div class="col-md-12 col-sm-6">
                         <div class="card boost-up-card overflow-hidden">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer">
+            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer" onclick="location.href = '/plants-histories'">
                 <div class="row">
                     <div class="col-md-12 col-sm-6">
                         <div class="card boost-up-card overflow-hidden">

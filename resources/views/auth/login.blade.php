@@ -47,11 +47,15 @@
             <div class="col-xl-7 p-0">
                 <div class="login-card login-dark">
                     <div>
-                        <div><a class="logo text-start" href="index.html"><img class="img-fluid for-dark"
-                                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}"
-                                    alt="looginpage"><img class="img-fluid for-light"
+                        <div class="text-center mb-3">
+                            <a class="logo d-inline-block" href="index.html">
+                                <img class="img-fluid for-dark"
+                                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" width="90px" alt="loginpage">
+                                <img class="img-fluid for-light"
                                     src="{{ asset('dashboard_assets/assets/images/logo/logo_dark.png') }}"
-                                    alt="looginpage"></a></div>
+                                    width="90px" alt="loginpage">
+                            </a>
+                        </div>
                         <div class="login-main">
                             <form id="loginForm" class="theme-form">
                                 <h4>Login</h4>
@@ -93,30 +97,30 @@
         <script src="{{ asset('dashboard_assets/assets/js/script.js') }}"></script>
 
         <script>
-          $(document).ready(function () {
-              $("#loginForm").on("submit", function (e) {
-                  e.preventDefault();
+            $(document).ready(function() {
+                $("#loginForm").on("submit", function(e) {
+                    e.preventDefault();
 
-                  $.ajax({
-                      url: "{{ url('/login') }}",
-                      type: "POST",
-                      data: $(this).serialize(),
-                      headers: {
-                          'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                      },
-                      success: function (res) {
-                          window.location.href = "/dashboard";
-                      },
-                      error: function (xhr) {
-                          $("#errorMessage").html(`
+                    $.ajax({
+                        url: "{{ url('/login') }}",
+                        type: "POST",
+                        data: $(this).serialize(),
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        success: function(res) {
+                            window.location.href = "/dashboard";
+                        },
+                        error: function(xhr) {
+                            $("#errorMessage").html(`
                               <span class="badge bg-danger">
                                   Invalid username or password
                               </span>
                           `);
-                      }
-                  });
-              });
-          });
+                        }
+                    });
+                });
+            });
         </script>
 
     </div>
