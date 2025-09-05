@@ -190,7 +190,7 @@
                         <div class="media-body d-xxl-block d-none box-col-none">
                             <div class="d-flex align-items-center gap-2"> <span>{{auth()->user()->name}} </span><i
                                     class="middle fa fa-angle-down"> </i></div>
-                            <p class="mb-0 font-roboto">{{auth()->user()->username}}</p>
+                            <p class="mb-0 font-roboto">{{auth()->user()->email}}</p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div active">

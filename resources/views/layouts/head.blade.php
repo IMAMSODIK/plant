@@ -8,7 +8,7 @@
 <meta name="author" content="pixelstrap">
 <link rel="icon" href="{{asset('dashboard_assets/assets/images/favicon.png')}}" type="image/x-icon">
 <link rel="shortcut icon" href="{{asset('dashboard_assets/assets/images/favicon.png')}}" type="image/x-icon">
-<title>{{$pageTitle}} | PUSBISNIS</title>
+<title>{{$pageTitle}}</title>
 <!-- Google font-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">

@@ -12,7 +12,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('dashboard_assets/assets/images/favicon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('dashboard_assets/assets/images/favicon.png') }}" type="image/x-icon">
-    <title>Login</title>
+    <title>Sign Up</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -50,23 +50,30 @@
                         <div class="text-center mb-3">
                             <a class="logo d-inline-block" href="index.html">
                                 <img class="img-fluid for-dark"
-                                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" width="150px" alt="loginpage">
+                                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" width="120px"
+                                    alt="loginpage">
                                 <img class="img-fluid for-light"
                                     src="{{ asset('dashboard_assets/assets/images/logo/logo_dark.png') }}"
-                                    width="150px" alt="loginpage">
+                                    width="120px" alt="loginpage">
                             </a>
                         </div>
                         <div class="login-main">
                             <form id="loginForm" class="theme-form">
-                                <h4>Login</h4>
-                                <p>Enter your Email and Password to continue</p>
+                                <h4>Sign Up</h4>
+                                <p>Create your account by entering an email and password to get started.</p>
 
                                 <!-- error badge -->
                                 <div id="errorMessage" class="mb-2"></div>
 
                                 <div class="form-group">
+                                    <label class="col-form-label">Name</label>
+                                    <input class="form-control" type="text" name="name" required
+                                        placeholder="Enter Name">
+                                </div>
+
+                                <div class="form-group">
                                     <label class="col-form-label">Email</label>
-                                    <input class="form-control" type="email" name="email" required
+                                    <input class="form-control" type="text" name="email" required
                                         placeholder="Enter Email">
                                 </div>
 
@@ -79,10 +86,20 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-0">
-                                    <button class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
+                                <div class="form-group">
+                                    <label class="col-form-label">Confirm Password</label>
+                                    <div class="form-input position-relative">
+                                        <input class="form-control" type="password" name="password_confirmation"
+                                            required placeholder="*********">
+                                        <div class="show-hide"><span class="show"></span></div>
+                                    </div>
                                 </div>
-                                <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2" href="/sign-up">Create Account</a></p>
+
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-primary btn-block w-100" type="submit">Sign Up</button>
+                                </div>
+                                <p class="mt-4 mb-0 text-center">Already have an account?<a class="ms-2"
+                                        href="/login">Sign In</a></p>
                             </form>
                         </div>
 
@@ -103,23 +120,24 @@
                     e.preventDefault();
 
                     $.ajax({
-                        url: "{{ url('/login') }}",
+                        url: "{{ url('/sign-up') }}",
                         type: "POST",
                         data: $(this).serialize(),
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         success: function(res) {
-                            window.location.href = "/dashboard";
+                            window.location.href = res.redirect;
                         },
                         error: function(xhr) {
                             $("#errorMessage").html(`
-                              <span class="badge bg-danger">
-                                  Invalid username or password
-                              </span>
-                          `);
+                                <span class="badge bg-danger">
+                                    ${xhr.responseJSON?.message ?? 'Registration failed'}
+                                </span>
+                            `);
                         }
                     });
+
                 });
             });
         </script>

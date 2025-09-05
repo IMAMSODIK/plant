@@ -22,15 +22,12 @@
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Notifikasi 1 -->
             <div class="col-12">
                 <div class="card mb-2 p-2 d-flex flex-row align-items-center">
-                    <!-- Gambar tanaman -->
                     <div class="me-3">
                         <img src="{{ asset('own_assets/images/mawar.png') }}" alt="Rose" class="img-fluid rounded"
                             style="width: 60px; height: 60px;">
                     </div>
-                    <!-- Detail notifikasi -->
                     <div class="flex-grow-1">
                         <h6 class="mb-1 fw-bold">Rose</h6>
                         <p class="mb-0 text-muted" style="font-size: 14px;">
@@ -41,7 +38,6 @@
                 </div>
             </div>
 
-            <!-- Notifikasi 2 -->
             <div class="col-12">
                 <div class="card mb-2 p-2 d-flex flex-row align-items-center">
                     <div class="me-3">
@@ -58,7 +54,6 @@
                 </div>
             </div>
 
-            <!-- Notifikasi 3 -->
             <div class="col-12">
                 <div class="card mb-2 p-2 d-flex flex-row align-items-center">
                     <div class="me-3">
@@ -75,6 +70,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

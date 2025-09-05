@@ -32,8 +32,8 @@
 <script src="{{ asset('dashboard_assets/assets/js/calendar/custom-calendar.js') }}"></script>
 <script src="{{ asset('dashboard_assets/assets/js/dashboard/dashboard_2.js') }}"></script>
 <script src="{{ asset('dashboard_assets/assets/js/animation/wow/wow.min.js') }}"></script>
-<script src="{{asset('dashboard_assets/assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('dashboard_assets/assets/js/datatable/datatables/datatable.custom.js')}}"></script>
+<script src="{{ asset('dashboard_assets/assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('dashboard_assets/assets/js/datatable/datatables/datatable.custom.js') }}"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('dashboard_assets/assets/js/script.js') }}"></script>
@@ -42,43 +42,82 @@
 <script>
     new WOW().init();
 
-    $("#logout").on("click", function(){
+    $("#logout").on("click", function() {
         let token = $("meta[name='csrf-token']").attr('content');
         $.ajax({
             url: '/logout',
             method: 'POST',
-            data:{
+            data: {
                 "_token": token
             },
-            success: function(response){
+            success: function(response) {
                 location.href = '/login'
             },
-            error: function(response){
+            error: function(response) {
                 alert(response.message);
             }
         })
     })
 
-    function closeModal(element){
+    function closeModal(element) {
         element.modal("hide");
     }
 </script>
 {{-- fungsi tanggal --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
-    function formatTanggal(data){
+    function formatTanggal(data) {
         moment.locale('id');
         return data ? moment(data).format('DD MMMM YYYY HH:mm') + ' WIB' : '-';
     }
-    function formatTanggalBooking(data){
+
+    function formatTanggalBooking(data) {
         moment.locale('id');
         return data ? moment(data).format('DD MMMM YYYY') : '-';
     }
+
     function formatRupiah(angka) {
         if (!angka) return 'Tidak ada data';
 
         return 'Rp. ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
-
 </script>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import {
+        getAnalytics
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyAvD3denIKetu-SoQKqizch85ASsXe4hEg",
+        authDomain: "smart-pot-soil.firebaseapp.com",
+        databaseURL: "https://smart-pot-soil-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "smart-pot-soil",
+        storageBucket: "smart-pot-soil.firebasestorage.app",
+        messagingSenderId: "876493991000",
+        appId: "1:876493991000:web:b3380dc34fbfaaee7dae2d",
+        measurementId: "G-19JWHNN92X"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+<script>
+    const firebaseConfig = {
+        /* config dari step 2 */ };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
 @yield('own_script')

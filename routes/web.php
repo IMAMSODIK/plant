@@ -18,8 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/developers', [DevelopersController::class, 'index']);
 
     Route::get('/my-garden', [MyGardenController::class, 'index']);
+    Route::get('/my-garden/detail', [MyGardenController::class, 'detail']);
 
     Route::get('/plants-histories', [PlantHistoryController::class, 'index']);
+
+    Route::get('/test', [DashboardController::class, 'test']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
@@ -27,6 +30,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginCheck'])->name('login-check'); 
+
+    Route::get('/sign-up', [AuthController::class, 'registrasi'])->name('registrasi');
+    Route::post('/sign-up', [AuthController::class, 'registrasiCheck'])->name('registrasi-check'); 
 });
 
 Route::get('/', function () {

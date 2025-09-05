@@ -22,7 +22,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-4" onclick="location.href = '/my-garden/detail?name=rose'" style="cursor: pointer">
                 <div class="card">
                     <div class="blog-box blog-grid text-center product-box">
                         <div class="product-img"><img class="img-fluid top-radius-blog" src="{{asset('own_assets/images/mawar.png')}}" alt="">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-4" onclick="location.href = '/my-garden/detail?name=sunflower'" style="cursor: pointer">
                 <div class="card">
                     <div class="blog-box blog-grid text-center product-box">
                         <div class="product-img"><img class="img-fluid top-radius-blog" src="{{asset('own_assets/images/matahari.png')}}" alt="">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-4" onclick="location.href = '/my-garden/detail?name=melati'" style="cursor: pointer">
                 <div class="card">
                     <div class="blog-box blog-grid text-center product-box">
                         <div class="product-img"><img class="img-fluid top-radius-blog" src="{{asset('own_assets/images/melati.png')}}" alt="">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-4" onclick="location.href = '/my-garden/detail?name=anggrek'" style="cursor: pointer">
                 <div class="card">
                     <div class="blog-box blog-grid text-center product-box">
                         <div class="product-img"><img class="img-fluid top-radius-blog" src="{{asset('own_assets/images/anggrek.png')}}" alt="">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-4" onclick="location.href = '/my-garden/detail?name=lidah-mertua'" style="cursor: pointer">
                 <div class="card">
                     <div class="blog-box blog-grid text-center product-box">
                         <div class="product-img"><img class="img-fluid top-radius-blog" src="{{asset('own_assets/images/lidah.png')}}" alt="">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-4" onclick="location.href = '/my-garden/detail?name=keladi'" style="cursor: pointer">
                 <div class="card">
                     <div class="blog-box blog-grid text-center product-box">
                         <div class="product-img"><img class="img-fluid top-radius-blog" src="{{asset('own_assets/images/keladi.png')}}" alt="">
