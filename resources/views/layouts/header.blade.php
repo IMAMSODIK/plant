@@ -54,6 +54,12 @@
                             </span></div>
                     </div>
                 </li> --}}
+                <li>
+                    <button class="btn btn-primary" onclick="location.href='/dashboard'">
+                        <i class="fa fa-tachometer text-white" aria-hidden="true"></i>
+                        </svg><span class="">Dashboard</span></a>
+                    </button>
+                </li>
                 <li class="onhover-dropdown">
                     <svg>
                         <use href="{{ asset('dashboard_assets/assets/svg/icon-sprite.svg#star') }}"></use>
@@ -66,7 +72,7 @@
                                     <ul class="bookmark-dropdown">
                                         <li>
                                             <div class="row">
-                                                <div class="col-4 text-center">
+                                                <div class="col-4 text-center" onclick="location.href = '/dashboard'">
                                                     <div class="bookmark-content">
                                                         <div class="bookmark-icon"><i class="fa fa-tachometer"
                                                                 aria-hidden="true"></i></div>
@@ -78,13 +84,6 @@
                                                         <div class="bookmark-icon"><i class="fa fa-user"
                                                                 aria-hidden="true"></i>
                                                         </div><span>Profile</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 text-center">
-                                                    <div class="bookmark-content">
-                                                        <div class="bookmark-icon"><i class="fa fa-unlock-alt"
-                                                                aria-hidden="true"></i></div>
-                                                        <span>Reset Password</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -206,7 +205,7 @@
                     </ul>
                 </li>
             </ul>
-            <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div>
+            {{-- <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div> --}}
         </div>
     </div>
 </div>
