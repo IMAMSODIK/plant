@@ -60,7 +60,7 @@
                         </svg><span class="">Dashboard</span></a>
                     </button>
                 </li>
-                <li class="onhover-dropdown">
+                {{-- <li class="onhover-dropdown">
                     <svg>
                         <use href="{{ asset('dashboard_assets/assets/svg/icon-sprite.svg#star') }}"></use>
                     </svg>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> --}}
                 <li>
                     <div class="mode"><i class="moon" data-feather="moon"> </i></div>
                 </li>
