@@ -28,3 +28,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginCheck'])->name('login-check'); 
 });
+
+Route::get('/', function () {
+    return redirect('/dashboard');
+});
