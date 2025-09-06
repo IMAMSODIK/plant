@@ -4,11 +4,11 @@
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
-                <div class="row">
-                    <div class="col-6">
+                <div class="row mt-4">
+                    <div class="col-4">
                         <h4>Teachers</h4>
                     </div>
-                    <div class="col-6 d-flex justify-content-end">
+                    <div class="col-8 d-flex justify-content-end">
                         <button class="btn btn-success" id="tambah-data">Add Teacher</button>
                     </div>
                 </div>

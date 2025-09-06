@@ -4,11 +4,11 @@
     <input type="hidden" name="" id="garden_id" value="{{ $garden->id }}">
     <div class="container-fluid mt-4">
         <div class="page-title">
-            <div class="row">
-                <div class="col-6">
+            <div class="row mt-4">
+                <div class="col-4">
                     <h4>My Plants</h4>
                 </div>
-                <div class="col-6">
+                <div class="col-8">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">
                                 <svg class="stroke-icon">
