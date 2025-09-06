@@ -3,11 +3,11 @@
 @section('content')
     <div class="container-fluid mt-4">
         <div class="page-title">
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-4">
                     <h4>Detail Plant</h4>
                 </div>
-                <div class="col-4">
+                <div class="col-8">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">
                                 <svg class="stroke-icon">
