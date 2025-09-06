@@ -137,15 +137,19 @@
                         sweetAlert(true, "Flower type berhasil disimpan!");
 
                         const newCard = `
-                            <div class="col-6 col-md-4" onclick="location.href='/my-garden/detail?id=${encodeURIComponent(response.data.id)}'" style="cursor:pointer">
+                            <div class="col-6 col-md-4">
                                 <div class="card">
-                                    <div class="blog-box blog-grid text-center product-box">
+                                    <div class="blog-box blog-grid text-center product-box" onclick="location.href='/my-garden/detail?id=${encodeURIComponent(response.data.id)}'" style="cursor:pointer">
                                         <div class="product-img">
                                             <img class="img-fluid top-radius-blog" src="/storage/${response.data.type_image}" alt="${response.data.type_name}">
                                         </div>
                                         <div class="blog-details-main">
                                             <h3 class="blog-bottom-details">${response.data.type_name}</h3>
                                         </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-danger delete" data-id="${encodeURIComponent(response.data.id)}"
+                                            style="width: 100%">Delete</button>
                                     </div>
                                 </div>
                             </div>
