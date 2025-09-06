@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DevelopersController;
 use App\Http\Controllers\MyGardenController;
+use App\Http\Controllers\PlantController;
 use App\Http\Controllers\PlantHistoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/developers', [DevelopersController::class, 'index']);
 
     Route::get('/my-garden', [MyGardenController::class, 'index']);
+    Route::post('/my-garden/store', [MyGardenController::class, 'store']);
+    Route::post('/my-garden/delete', [MyGardenController::class, 'delete']);
     Route::get('/my-garden/detail', [MyGardenController::class, 'detail']);
+
+    Route::post('/plant/store', [PlantController::class, 'store']);
+    Route::post('/plant/delete', [PlantController::class, 'delete']);
+    Route::get('/plant/detail', [PlantController::class, 'detail']);
 
     Route::get('/plants-histories', [PlantHistoryController::class, 'index']);
 

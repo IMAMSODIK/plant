@@ -16,8 +16,8 @@
 
     <div class="logo-icon-wrapper">
         <a href="index.html">
-            <img class="img-fluid" style="width: 50px" src="{{ asset('dashboard_assets/assets/images/logo/logo-icon.png') }}"
-                alt="">
+            <img class="img-fluid" style="width: 50px"
+                src="{{ asset('dashboard_assets/assets/images/logo/logo-icon.png') }}" alt="">
         </a>
     </div>
 
