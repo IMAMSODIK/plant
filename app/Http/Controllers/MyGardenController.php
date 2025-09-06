@@ -83,6 +83,9 @@ class MyGardenController extends Controller
 
         try {
             $garden = Garden::findOrFail($request->id);
+            foreach ($garden->plants as $plant) {
+                $plant->delete();
+            }
 
             if ($garden->type_image && Storage::disk('public')->exists($garden->type_image)) {
                 Storage::disk('public')->delete($garden->type_image);
