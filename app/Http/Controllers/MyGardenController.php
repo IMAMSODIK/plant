@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 
 class MyGardenController extends Controller
 {
@@ -22,22 +23,26 @@ class MyGardenController extends Controller
 
     public function detail(Request $request)
     {
-        $json = file_get_contents(storage_path('app/smart-pot-soil.json'));
+        // URL Firebase Realtime Database
+        $firebaseUrl = "https://smart-pot-soil-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
 
-        $dataPlant = json_decode($json, true);
+        // Ambil data dari Firebase
+        $response = Http::get($firebaseUrl);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            dd('JSON Error: ' . json_last_error_msg(), $json);
+        if ($response->failed()) {
+            return back()->with('error', 'Gagal mengambil data dari Firebase');
         }
+
+        $dataPlant = $response->json();
 
         $garden = Garden::where('id', $request->id)->first();
 
         $data = [
-            'garden' => $garden,
+            'garden'   => $garden,
             'pageTitle' => 'Detail',
-            'gambar' => $garden->type_image,
-            'name' => $garden->type_name,
-            'flowers' => Plant::where('garden_id', $request->id)->get(),
+            'gambar'   => $garden->type_image,
+            'name'     => $garden->type_name,
+            'flowers'  => Plant::where('garden_id', $request->id)->get(),
             'dataPlant' => $dataPlant,
         ];
 

@@ -119,7 +119,8 @@
                         <div class="mb-3">
                             <label for="moisture_min" class="form-label">Moisture Min (%)</label>
                             <input type="text" name="moisture_min" id="moisture_min" class="form-control"
-                                placeholder="Enter Moisture Min (%)" required value="{{$dataPlant['plant_information']['moisture_min']}}">
+                                placeholder="Enter Moisture Min (%)" required
+                                value="{{ $dataPlant['plant_information']['moisture_min'] }}">
                         </div>
 
                     </div>
