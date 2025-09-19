@@ -99,6 +99,7 @@
                     <div class="card">
                         <div class="card-header card-no-border total-revenue pb-0">
                             <h4>Device Informations</h4>
+                            {{ $data['device_information']['battery_percentage'] }}%
                             <div class="icon-menu-header">
                                 <svg>
                                     <use href="../assets/svg/icon-sprite.svg#more-horizontal"></use>
