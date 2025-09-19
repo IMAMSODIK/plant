@@ -99,7 +99,6 @@
                     <div class="card">
                         <div class="card-header card-no-border total-revenue pb-0">
                             <h4>Device Informations</h4>
-                            {{ $data['device_information']['battery_percentage'] }}%
                             <div class="icon-menu-header">
                                 <svg>
                                     <use href="../assets/svg/icon-sprite.svg#more-horizontal"></use>
@@ -114,11 +113,7 @@
                                             <td class="f-w-400 f-10">Battery Percentage</td>
                                             <td>
                                                 <div class="progress-value d-flex gap-2 align-items-center">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-primary" role="progressbar"
-                                                            style="width: 75%  " aria-valuenow="75" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div><span>{{ $data['device_information']['battery_percentage'] }}%</span>
+                                                    {{ $data['device_information']['battery_percentage'] }}%
                                                 </div>
                                             </td>
                                         </tr>
@@ -126,11 +121,7 @@
                                             <td class="f-w-400 f-10">Last Connected</td>
                                             <td>
                                                 <div class="progress-value d-flex gap-2 align-items-center">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-primary" role="progressbar"
-                                                            style="width: 15%" aria-valuenow="15" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div><span class="text-dark">{{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}</span>
+                                                    {{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}
                                                 </div>
                                             </td>
                                         </tr>
