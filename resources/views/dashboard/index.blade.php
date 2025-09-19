@@ -1,7 +1,6 @@
 @extends('template')
 
 @section('content')
-{{dd($data['device_information']['last_connected'])->format('d M Y H:i')}}
     <div class="container-fluid mt-4">
         <div class="page-title">
             <div class="row mt-4">
