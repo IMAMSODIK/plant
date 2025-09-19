@@ -1,6 +1,7 @@
 @extends('template')
 
 @section('content')
+{{dd($data)}}
     <div class="container-fluid mt-4">
         <div class="page-title">
             <div class="row mt-4">
