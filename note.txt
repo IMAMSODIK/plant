@@ -1,6 +1,6 @@
-hide and show login form belum bisa
-translate daftar plant kebahasa inggris
-hapud tombol delete
+hide and show login form belum bisa (done)
+translate daftar plant kebahasa inggris (done)
+hapud tombol delete (done)
 
 
 daftar writeable

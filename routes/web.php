@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/plants-histories', [PlantHistoryController::class, 'index']);
 
-    Route::get('/test', [DashboardController::class, 'test']);
+    Route::get('/test', [DashboardController::class, 'ztest']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
