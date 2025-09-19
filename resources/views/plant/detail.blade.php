@@ -14,7 +14,8 @@
                                     <use href="{{ asset('dashboard_assets/assets/svg/icon-sprite.svg#stroke-home') }}"></use>
                                 </svg></a></li>
                         <li class="breadcrumb-item"><a href="/my-garden">My Garden</a></li>
-                        <li class="breadcrumb-item"><a href="/my-garden/detail?id={{$plant->garden->id}}">My Plants</a></li>
+                        <li class="breadcrumb-item"><a href="/my-garden/detail?id={{ $plant->garden->id }}">My Plants</a>
+                        </li>
                         <li class="breadcrumb-item">Detail Plant</li>
                     </ol>
                 </div>
@@ -27,8 +28,8 @@
             <div class="card balance-box mb-0" data-id="{{ $plant->id }}">
                 <div class="card-body">
                     <div class="balance-profile">
-                        <div class="balance-img"><img src="{{ asset('storage') . '/' . $plant->garden->type_image }}" alt="{{ $plant->nama }}"
-                                width="100%"></div>
+                        <div class="balance-img"><img src="{{ asset('storage') . '/' . $plant->garden->type_image }}"
+                                alt="{{ $plant->nama }}" width="100%"></div>
                         {{-- <span class="f-light d-block" id="name"></span> --}}
                         <h5 class="mt-1" id="name">{{ $plant->nama }}</h5>
                         <ul>
@@ -56,6 +57,13 @@
                                     </div>
                                 </div>
                             </li>
+                            <li>
+                                <div class="balance-item success">
+                                    <div>
+                                        <button class="btn btn-primary activate-pump">Pump Activate</button>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -65,6 +73,43 @@
 @endsection
 
 @section('own_script')
+    <script>
+        $(document).on('click', ".activate-pump", function() {
+            let button = $(this);
+            button.prop("disabled", true);
+
+            $.ajax({
+                url: "/plant/activate-pump",
+                method: "POST",
+                data: {
+                    _token: $("meta[name='csrf-token']").attr('content')
+                },
+                success: function(response) {
+                    button.prop("disabled", false);
+                    if (response.status) {
+                        sweetAlert(true, "Pump is Activated!");
+                    } else {
+                        sweetAlert(false, "Gagal mengaktifkan pump: " + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    button.prop("disabled", false);
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        let message = '';
+                        $.each(errors, function(key, val) {
+                            message += `${val}\n`;
+                        });
+                        sweetAlert(false, message);
+                    } else {
+                        sweetAlert(false, "Terjadi kesalahan saat mengaktifkan pump.");
+                    }
+                }
+            });
+        });
+    </script>
+
+
     {{-- <script>
         $("#add-data").on("click", function() {
             $("#addFlowerTypeModal").modal("show");

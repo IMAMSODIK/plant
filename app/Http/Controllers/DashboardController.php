@@ -9,13 +9,19 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data = [
-            'pageTitle' => "Dashboard"
-        ];
-        return view('dashboard.index', $data);
+        $json = file_get_contents(storage_path('app/smart-pot-soil.json'));
+
+        $data = json_decode($json, true);
+        $pageTitle = "Dashboard";
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            dd('JSON Error: ' . json_last_error_msg(), $json);
+        }
+
+        return view('dashboard.index', compact('data', 'pageTitle'));
     }
 
-    public function test()
+    public function ztest()
     {
         $json = file_get_contents(storage_path('app/smart-pot-soil.json'));
 

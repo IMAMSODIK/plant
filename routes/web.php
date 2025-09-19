@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/plant/store', [PlantController::class, 'store']);
     Route::post('/plant/delete', [PlantController::class, 'delete']);
     Route::get('/plant/detail', [PlantController::class, 'detail']);
+    Route::post('/plant/activate-pump', [PlantController::class, 'activatePump']);
 
     Route::get('/plants-histories', [PlantHistoryController::class, 'index']);
 

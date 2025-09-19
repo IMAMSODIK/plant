@@ -1,0 +1,11 @@
+hide and show login form belum bisa
+translate daftar plant kebahasa inggris
+hapud tombol delete
+
+
+daftar writeable
+- last pulse ms
+- pump active
+- timzone
+- waterlevel (0 hidup, 1 mati)
+- moisture min : tingkat kebutuhan air pada tanaman

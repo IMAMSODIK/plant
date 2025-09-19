@@ -36,6 +36,25 @@
     <link id="color" rel="stylesheet" href="{{ asset('dashboard_assets/assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/responsive.css') }}">
+
+    <style>
+        .show-hide {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .show-hide span::before {
+            content: '👁️';
+        }
+
+        .show-hide span.hide::before {
+            content: 'hide';
+        }
+    </style>
 </head>
 
 <body>
@@ -50,7 +69,8 @@
                         <div class="text-center mb-3">
                             <a class="logo d-inline-block" href="index.html">
                                 <img class="img-fluid for-dark"
-                                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" width="150px" alt="loginpage">
+                                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" width="150px"
+                                    alt="loginpage">
                                 <img class="img-fluid for-light"
                                     src="{{ asset('dashboard_assets/assets/images/logo/logo_dark.png') }}"
                                     width="150px" alt="loginpage">
@@ -73,16 +93,18 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Password</label>
                                     <div class="form-input position-relative">
-                                        <input class="form-control" type="password" name="password" required
-                                            placeholder="*********">
+                                        <input id="password" class="form-control" type="password" name="password"
+                                            required placeholder="*********">
                                         <div class="show-hide"><span class="show"></span></div>
                                     </div>
                                 </div>
 
+
                                 <div class="form-group mb-0">
                                     <button class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
                                 </div>
-                                <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2" href="/sign-up">Create Account</a></p>
+                                <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2"
+                                        href="/sign-up">Create Account</a></p>
                             </form>
                         </div>
 
@@ -124,6 +146,22 @@
             });
         </script>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const toggle = document.querySelector(".show-hide");
+                const input = document.getElementById("password");
+
+                toggle.addEventListener("click", function() {
+                    if (input.type === "password") {
+                        input.type = "text";
+                        this.querySelector("span").classList.add("hide");
+                    } else {
+                        input.type = "password";
+                        this.querySelector("span").classList.remove("hide");
+                    }
+                });
+            });
+        </script>
     </div>
 </body>
 

@@ -34,10 +34,10 @@
                                 <h3 class="blog-bottom-details">{{ $g->type_name }}</h3>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        {{-- <div class="card-footer">
                             <button class="btn btn-danger delete" data-id="{{ $g->id }}"
                                 style="width: 100%">Delete</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach
@@ -147,10 +147,6 @@
                                             <h3 class="blog-bottom-details">${response.data.type_name}</h3>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <button class="btn btn-danger delete" data-id="${encodeURIComponent(response.data.id)}"
-                                            style="width: 100%">Delete</button>
-                                    </div>
                                 </div>
                             </div>
                             `;
@@ -213,3 +209,8 @@
         });
     </script>
 @endsection
+
+{{-- <div class="card-footer">
+    <button class="btn btn-danger delete" data-id="${encodeURIComponent(response.data.id)}"
+        style="width: 100%">Delete</button>
+</div> --}}

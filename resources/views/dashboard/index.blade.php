@@ -5,7 +5,7 @@
         <div class="page-title">
             <div class="row mt-4">
                 <div class="col-4">
-                    <h4>Garden</h4>
+                    <h4>Dashboard</h4>
                 </div>
                 <div class="col-8">
                     <ol class="breadcrumb">
@@ -66,7 +66,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer" onclick="location.href = '/plants-histories'">
+            <div class="col-xl-4 col-md-6 box-col-none" style="cursor: pointer"
+                onclick="location.href = '/plants-histories'">
                 <div class="row">
                     <div class="col-md-12 col-sm-6">
                         <div class="card boost-up-card overflow-hidden">
@@ -83,6 +84,57 @@
                                         src="{{ asset('dashboard_assets/assets/images/dashboard-3/boostup2.png') }}"
                                         alt="boostup">
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row size-column">
+            <div class="row">
+                <div class="col-md-12 col-sm-6">
+                    <div class="card">
+                        <div class="card-header card-no-border total-revenue pb-0">
+                            <h4>Device Informations</h4>
+                            <div class="icon-menu-header">
+                                <svg>
+                                    <use href="../assets/svg/icon-sprite.svg#more-horizontal"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="table-responsive custom-scrollbar deliveries-percentage">
+                                <table class="percentage-data w-100">
+                                    <tbody>
+                                        <tr>
+                                            <td class="f-w-400 f-10">Battery Percentage</td>
+                                            <td>
+                                                <div class="progress-value d-flex gap-2 align-items-center">
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-primary" role="progressbar"
+                                                            style="width: 75%  " aria-valuenow="75" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div><span>{{ $data['device_information']['battery_percentage'] }}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="f-w-400 f-10">Last Connected</td>
+                                            <td>
+                                                <div class="progress-value d-flex gap-2 align-items-center">
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-primary" role="progressbar"
+                                                            style="width: 15%" aria-valuenow="15" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div><span>{{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

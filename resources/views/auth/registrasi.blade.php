@@ -36,6 +36,25 @@
     <link id="color" rel="stylesheet" href="{{ asset('dashboard_assets/assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/responsive.css') }}">
+
+    <style>
+        .show-hide {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .show-hide span::before {
+            content: '👁️';
+        }
+
+        .show-hide span.hide::before {
+            content: 'hide';
+        }
+    </style>
 </head>
 
 <body>
@@ -80,18 +99,20 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Password</label>
                                     <div class="form-input position-relative">
-                                        <input class="form-control" type="password" name="password" required
-                                            placeholder="*********">
-                                        <div class="show-hide"><span class="show"></span></div>
+                                        <input id="password" class="form-control" type="password" name="password"
+                                            required placeholder="*********">
+                                        <div class="show-hide" data-target="#password"><span class="show"></span>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-form-label">Confirm Password</label>
                                     <div class="form-input position-relative">
-                                        <input class="form-control" type="password" name="password_confirmation"
-                                            required placeholder="*********">
-                                        <div class="show-hide"><span class="show"></span></div>
+                                        <input id="password_confirmation" class="form-control" type="password"
+                                            name="password_confirmation" required placeholder="*********">
+                                        <div class="show-hide" data-target="#password_confirmation"><span
+                                                class="show"></span></div>
                                     </div>
                                 </div>
 
@@ -138,6 +159,25 @@
                         }
                     });
 
+                });
+            });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelectorAll(".show-hide").forEach(toggle => {
+                    toggle.addEventListener("click", function() {
+                        const input = document.querySelector(this.dataset.target);
+                        const span = this.querySelector("span");
+
+                        if (input.type === "password") {
+                            input.type = "text";
+                            span.classList.add("hide");
+                        } else {
+                            input.type = "password";
+                            span.classList.remove("hide");
+                        }
+                    });
                 });
             });
         </script>
