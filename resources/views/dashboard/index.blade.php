@@ -110,20 +110,10 @@
                                 <table class="percentage-data w-100">
                                     <tbody>
                                         <tr>
-                                            <td class="f-w-400 f-10">Battery Percentage</td>
-                                            <td>
-                                                <div class="progress-value d-flex gap-2 align-items-center">
-                                                    {{ $data['device_information']['battery_percentage'] }}%
-                                                </div>
-                                            </td>
+                                            <td class="f-w-400 f-10">Battery Percentage : {{ $data['device_information']['battery_percentage'] }}%</td>
                                         </tr>
                                         <tr>
-                                            <td class="f-w-400 f-10">Last Connected</td>
-                                            <td>
-                                                <div class="progress-value d-flex gap-2 align-items-center">
-                                                    {{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}
-                                                </div>
-                                            </td>
+                                            <td class="f-w-400 f-10">Last Connected : {{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
