@@ -112,12 +112,12 @@
                                         <tr>
                                             <td class="f-w-400 f-10">Battery Percentage</td>
                                             <td> : </td>
-                                            <td>{{ $data['device_information']['battery_percentage'] }}%</td>
+                                            <td>{{ $dataDevice['battery_percentage'] }}%</td>
                                         </tr>
                                         <tr>
                                             <td class="f-w-400 f-10">Last Connected</td>
                                             <td> : </td>
-                                            <td>{{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($dataDevice['last_connected'])->format('d M Y H:i') }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

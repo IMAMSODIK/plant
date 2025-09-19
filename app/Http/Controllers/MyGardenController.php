@@ -22,6 +22,14 @@ class MyGardenController extends Controller
 
     public function detail(Request $request)
     {
+        $json = file_get_contents(storage_path('app/smart-pot-soil.json'));
+
+        $dataPlant = json_decode($json, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            dd('JSON Error: ' . json_last_error_msg(), $json);
+        }
+
         $garden = Garden::where('id', $request->id)->first();
 
         $data = [
@@ -29,7 +37,8 @@ class MyGardenController extends Controller
             'pageTitle' => 'Detail',
             'gambar' => $garden->type_image,
             'name' => $garden->type_name,
-            'flowers' => Plant::where('garden_id', $request->id)->get()
+            'flowers' => Plant::where('garden_id', $request->id)->get(),
+            'dataPlant' => $dataPlant,
         ];
 
         return view('garden.detail', $data);

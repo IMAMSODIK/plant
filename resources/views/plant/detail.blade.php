@@ -40,8 +40,20 @@
                                             <i class="fa fa-tint text-info" style="font-size:20px;"></i>
                                         </div>
                                     </div>
-                                    <div> <span class="f-12 f-light">Kelembapan Tanaman </span>
-                                        <span class="badge badge-light-info rounded-pill">20 %</span>
+                                    <div> <span class="f-12 f-light">Humidity </span>
+                                        <span class="badge badge-light-info rounded-pill">{{ $dataPlant['sensor']['humidity'] }}%</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="balance-item success">
+                                    <div class="balance-icon-wrap">
+                                        <div class="balance-icon">
+                                            <i class="fa fa-tint text-info" style="font-size:20px;"></i>
+                                        </div>
+                                    </div>
+                                    <div> <span class="f-12 f-light">Moisture </span>
+                                        <span class="badge badge-light-success rounded-pill">{{ $dataPlant['sensor']['moisture'] }}%</span>
                                     </div>
                                 </div>
                             </li>
@@ -52,8 +64,8 @@
                                             <i class="fa fa-thermometer-half text-warning" style="font-size:20px;"></i>
                                         </div>
                                     </div>
-                                    <div> <span class="f-12 f-light">Kelembapan Tanaman </span>
-                                        <span class="badge badge-light-success rounded-pill">20 %</span>
+                                    <div> <span class="f-12 f-light">Temperature </span>
+                                        <span class="badge badge-light-success rounded-pill">{{ $dataPlant['sensor']['temperature'] }}°C</span>
                                     </div>
                                 </div>
                             </li>

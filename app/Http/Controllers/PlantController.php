@@ -14,6 +14,8 @@ class PlantController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:plants,nama',
+            'moisture_min' => 'required|numeric|min:1|max:100',
+            'id' => 'required|exists:gardens,id'
         ]);
 
         if ($validator->fails()) {
@@ -24,6 +26,35 @@ class PlantController extends Controller
         }
 
         try {
+            $path = storage_path('app/smart-pot-soil.json');
+
+            $json = file_get_contents($path);
+            $data = json_decode($json, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'JSON Error: ' . json_last_error_msg()
+                ], 500);
+            }
+
+            $data['plant_information']['moisture_min'] = $request->moisture_min;
+            file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT));
+
+            $firebaseUrl = "https://smart-pot-soil-default-rtdb.asia-southeast1.firebasedatabase.app/plant_information.json";
+
+            $payload = json_encode([
+                "moisture_min" => (int)$request->moisture_min
+            ]);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $firebaseUrl);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $firebaseResponse = curl_exec($ch);
+            curl_close($ch);
+
             $plant = Plant::create([
                 'garden_id' => $request->id,
                 'nama' => $request->name,
@@ -32,7 +63,8 @@ class PlantController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Tanaman berhasil disimpan',
-                'data' => $plant->load('garden')
+                'data' => $plant->load('garden'),
+                'firebase' => json_decode($firebaseResponse, true)
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -42,17 +74,46 @@ class PlantController extends Controller
         }
     }
 
+
     public function detail(Request $request)
     {
-        $plant = Plant::with('garden')->where('id', $request->id)->first();
+        try {
+            // Ambil data tanaman dari database
+            $plant = Plant::with('garden')->where('id', $request->id)->first();
 
-        $data = [
-            'plant' => $plant,
-            'pageTitle' => 'Detail',
-        ];
+            // Ambil data JSON dari Firebase
+            $firebaseUrl = "https://smart-pot-soil-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $firebaseUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $firebaseResponse = curl_exec($ch);
+            curl_close($ch);
 
-        return view('plant.detail', $data);
+            if (!$firebaseResponse) {
+                throw new \Exception("Gagal mengambil data dari Firebase");
+            }
+
+            $plantData = json_decode($firebaseResponse, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new \Exception("JSON Error: " . json_last_error_msg());
+            }
+
+            $data = [
+                'plant' => $plant,
+                'pageTitle' => 'Detail',
+                'dataPlant' => $plantData,
+            ];
+
+            return view('plant.detail', $data);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
+
 
     public function delete(Request $request)
     {
@@ -75,13 +136,13 @@ class PlantController extends Controller
             ], 500);
         }
     }
-    
+
     public function activatePump(Request $request)
     {
-        
+
         $path = storage_path('app/smart-pot-soil.json');
 
-        
+
         $json = file_get_contents($path);
         $data = json_decode($json, true);
 
@@ -93,14 +154,14 @@ class PlantController extends Controller
         }
 
         $data['actuator']['pump_active'] = 1;
-        
+
         file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT));
 
         $firebaseUrl = "https://smart-pot-soil-default-rtdb.asia-southeast1.firebasedatabase.app/actuator/pump_active.json";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $firebaseUrl);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, 1); 
+        curl_setopt($ch, CURLOPT_POSTFIELDS, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $firebaseResponse = curl_exec($ch);
