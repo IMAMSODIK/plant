@@ -129,7 +129,7 @@
                                                         <div class="progress-bar bg-primary" role="progressbar"
                                                             style="width: 15%" aria-valuenow="15" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
-                                                    </div><span>{{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}</span>
+                                                    </div><span class="text-dark">{{ \Carbon\Carbon::parse($data['device_information']['last_connected'])->format('d M Y H:i') }}</span>
                                                 </div>
                                             </td>
                                         </tr>
