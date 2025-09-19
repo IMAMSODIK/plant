@@ -69,13 +69,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="balance-item success">
-                                    <div>
-                                        <button class="btn btn-primary activate-pump">Pump Activate</button>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                         <ul>
                             <li>
