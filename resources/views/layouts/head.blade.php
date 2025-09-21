@@ -6,42 +6,56 @@
 <meta name="keywords"
     content="admin template, Riho admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="pixelstrap">
-<link rel="icon" href="{{asset('dashboard_assets/assets/images/favicon.png')}}" type="image/x-icon">
-<link rel="shortcut icon" href="{{asset('dashboard_assets/assets/images/favicon.png')}}" type="image/x-icon">
-<title>{{$pageTitle}}</title>
+<link rel="icon" href="{{ asset('dashboard_assets/assets/images/favicon.png') }}" type="image/x-icon">
+<link rel="shortcut icon" href="{{ asset('dashboard_assets/assets/images/favicon.png') }}" type="image/x-icon">
+<title>{{ $pageTitle }}</title>
 <!-- Google font-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap"
     rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/font-awesome.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/font-awesome.css') }}">
 <!-- ico-font-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/icofont.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/icofont.css') }}">
 <!-- Themify icon-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/themify.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/themify.css') }}">
 <!-- Flag icon-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/flag-icon.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/flag-icon.css') }}">
 <!-- Feather icon-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/feather-icon.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/feather-icon.css') }}">
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/slick.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/slick-theme.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/scrollbar.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/slick.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/slick-theme.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/scrollbar.css') }}">
 <!-- Range slider css-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/rangeslider/rSlider.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/animate.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/prism.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/fullcalender.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/datatables.css')}}">
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('dashboard_assets/assets/css/vendors/rangeslider/rSlider.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/animate.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/prism.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/fullcalender.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/datatables.css') }}">
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/vendors/bootstrap.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/vendors/bootstrap.css') }}">
 <!-- App css-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/style.css')}}">
-<link id="color" media="screen" rel="stylesheet" href="{{asset('dashboard_assets/assets/css/color-1.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/style.css') }}">
+<link id="color" media="screen" rel="stylesheet" href="{{ asset('dashboard_assets/assets/css/color-1.css') }}">
 <!-- Responsive css-->
-<link rel="stylesheet" type="text/css" href="{{asset('dashboard_assets/assets/css/responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard_assets/assets/css/responsive.css') }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<style>
+    #notif-list {
+        padding-left: 0;
+        margin: 0;
+        text-align: left !important;
+        list-style: none;
+    }
+
+    #notif-list li {
+        text-align: left !important;
+    }
+</style>
 
 
 @yield('own_style')

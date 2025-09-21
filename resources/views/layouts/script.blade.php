@@ -41,14 +41,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    function sweetAlert(status, message){
-        if(status){
+    function sweetAlert(status, message) {
+        if (status) {
             Swal.fire({
                 title: "Success",
                 text: message,
                 icon: "success"
             });
-        }else{
+        } else {
             Swal.fire({
                 title: "Error",
                 text: message,
@@ -57,38 +57,38 @@
         }
     }
 
-    function confirmationAlert(id, url){
+    function confirmationAlert(id, url) {
         Swal.fire({
-                title: "Apakah anda yakin?",
-                text: "Data yang dihapus tidak dapat dikembalikan",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Hapus"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: url,
-                        method: 'POST',
-                        data: {
-                            '_token': $("meta[name='csrf-token']").attr('content'),
-                            'id': id
-                        },
-                        success: function(response){
-                            if(response.status){
-                                sweetAlert(response.status, 'Data berhasil dihapus');
-                                setTimeout(() => location.reload(), 1000);
-                            }else{
-                                sweetAlert(response.status, response.message);
-                            }
-                        },
-                        error: function(response){
+            title: "Apakah anda yakin?",
+            text: "Data yang dihapus tidak dapat dikembalikan",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Hapus"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    data: {
+                        '_token': $("meta[name='csrf-token']").attr('content'),
+                        'id': id
+                    },
+                    success: function(response) {
+                        if (response.status) {
+                            sweetAlert(response.status, 'Data berhasil dihapus');
+                            setTimeout(() => location.reload(), 1000);
+                        } else {
                             sweetAlert(response.status, response.message);
                         }
-                    })
-                }
-            });
+                    },
+                    error: function(response) {
+                        sweetAlert(response.status, response.message);
+                    }
+                })
+            }
+        });
     }
 </script>
 
@@ -137,8 +137,14 @@
 </script>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+    import {
+        getDatabase,
+        ref,
+        onValue
+    } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
 
     // Firebase Config
     const firebaseConfig = {
@@ -175,24 +181,24 @@
     // Kirim notifikasi ke Laravel via AJAX
     function sendNotificationToLaravel(title, message) {
         fetch("{{ route('notifications.store') }}", {
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title: title,
-                message: message,
-            }),
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Notif saved:", data);
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: title,
+                    message: message,
+                }),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("Notif saved:", data);
 
-            // Update DOM header notif tanpa reload
-            addNotificationToHeader(title, message);
-        })
-        .catch(err => console.error(err));
+                // Update DOM header notif tanpa reload
+                addNotificationToHeader(title, message);
+            })
+            .catch(err => console.error(err));
     }
 
     // Tambah notif ke dropdown header
@@ -204,16 +210,22 @@
         // item baru
         const li = document.createElement("li");
         li.innerHTML = `
-            <div class="user-alerts">
-                <img class="user-image rounded-circle img-fluid me-2"
-                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" alt="plant" />
-                <div class="user-name">
-                    <h6><a class="f-w-500 f-14" href="{{ route('notifications.index') }}">${title}</a></h6>
-                    <span class="f-12">${message}</span>
-                    <span class="f-12">just now</span>
-                </div>
-            </div>
-        `;
+    <div class="d-flex align-items-center">
+        <img class="user-image rounded-circle img-fluid me-2"
+            src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" alt="plant" 
+            style="width:40px; height:40px; object-fit:cover;" />
+        <div>
+            <h6 class="mb-0">
+                <a class="f-w-500 f-14" href="{{ route('notifications.index') }}">
+                    ${title}
+                </a>
+            </h6>
+            <span class="f-12 d-block">${message}</span>
+            <span class="f-12 text-muted">just now</span>
+        </div>
+    </div>
+`;
+
         notifList.prepend(li);
 
         // update badge
