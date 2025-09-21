@@ -120,7 +120,7 @@
                                         <!-- JS akan isi otomatis -->
                                     </ul>
                                     <div class="user-message text-center">
-                                        <a class="f-w-700" href="#">See all</a>
+                                        <a class="f-w-700" href="/notifications">See all</a>
                                     </div>
                                 </div>
                             </div>
