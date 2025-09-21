@@ -137,40 +137,89 @@
 </script>
 
 <script type="module">
-    // Import the functions you need from the SDKs you need
-    import {
-        initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import {
-        getAnalytics
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
 
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    // Firebase Config
     const firebaseConfig = {
         apiKey: "AIzaSyAvD3denIKetu-SoQKqizch85ASsXe4hEg",
         authDomain: "smart-pot-soil.firebaseapp.com",
         databaseURL: "https://smart-pot-soil-default-rtdb.asia-southeast1.firebasedatabase.app",
         projectId: "smart-pot-soil",
-        storageBucket: "smart-pot-soil.firebasestorage.app",
+        storageBucket: "smart-pot-soil.appspot.com",
         messagingSenderId: "876493991000",
         appId: "1:876493991000:web:b3380dc34fbfaaee7dae2d",
         measurementId: "G-19JWHNN92X"
     };
 
-    // Initialize Firebase
+    // Init Firebase
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    // Listen moisture_min
+    let moistureMin = 0;
+    onValue(ref(db, 'plant_information/moisture_min'), (snapshot) => {
+        moistureMin = snapshot.val();
+    });
+
+    // Listen sensor.moisture
+    onValue(ref(db, 'sensor/moisture'), (snapshot) => {
+        const moisture = snapshot.val();
+        console.log("Realtime Moisture:", moisture, "Min:", moistureMin);
+
+        if (moistureMin && moisture < moistureMin) {
+            sendNotificationToLaravel("Soil Alert", `Moisture is too low (${moisture}%)`);
+        }
+    });
+
+    // Kirim notifikasi ke Laravel via AJAX
+    function sendNotificationToLaravel(title, message) {
+        fetch("{{ route('notifications.store') }}", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: title,
+                message: message,
+            }),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("Notif saved:", data);
+
+            // Update DOM header notif tanpa reload
+            addNotificationToHeader(title, message);
+        })
+        .catch(err => console.error(err));
+    }
+
+    // Tambah notif ke dropdown header
+    function addNotificationToHeader(title, message) {
+        const notifList = document.querySelector(".notitications-bar ul");
+        const badge = document.querySelector(".notification-box .badge");
+        let count = parseInt(badge.innerText);
+
+        // item baru
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <div class="user-alerts">
+                <img class="user-image rounded-circle img-fluid me-2"
+                    src="{{ asset('dashboard_assets/assets/images/logo/logo.png') }}" alt="plant" />
+                <div class="user-name">
+                    <h6><a class="f-w-500 f-14" href="{{ route('notifications.index') }}">${title}</a></h6>
+                    <span class="f-12">${message}</span>
+                    <span class="f-12">just now</span>
+                </div>
+            </div>
+        `;
+        notifList.prepend(li);
+
+        // update badge
+        badge.innerText = count + 1;
+    }
 </script>
 
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
-<script>
-    const firebaseConfig = {
-        /* config dari step 2 */ };
-    firebase.initializeApp(firebaseConfig);
-</script>
 
 @yield('own_script')

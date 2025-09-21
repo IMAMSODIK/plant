@@ -41,7 +41,6 @@ class DashboardController extends Controller
         }
     }
 
-
     public function ztest()
     {
         $json = file_get_contents(storage_path('app/smart-pot-soil.json'));

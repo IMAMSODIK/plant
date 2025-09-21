@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DevelopersController;
 use App\Http\Controllers\MyGardenController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\PlantHistoryController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/plant/detail', [PlantController::class, 'detail']);
     Route::post('/plant/activate-pump', [PlantController::class, 'activatePump']);
 
-    Route::get('/plants-histories', [PlantHistoryController::class, 'index']);
+    Route::get('/notifications', [NotificationController::class, 'index'])
+            ->name('notifications.index');
+
+    Route::post('/notifications/store', [NotificationController::class, 'store'])->name('notifications.store');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+
 
     Route::get('/test', [DashboardController::class, 'ztest']);
 

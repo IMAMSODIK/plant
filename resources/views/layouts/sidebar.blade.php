@@ -74,7 +74,7 @@
 
                 <li class="sidebar-list">
                     <i class="fa-solid fa-thumbtack"></i>
-                    <a class="sidebar-link sidebar-title link-nav" href="/plants-histories">
+                    <a class="sidebar-link sidebar-title link-nav" href="/notifications">
                         <i class="fa fa-leaf text-white" aria-hidden="true"></i>
                         <span class="">Plants Histories</span>
                     </a>
